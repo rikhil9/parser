@@ -10,7 +10,9 @@ import { APPDATA } from './mock-data';
 export class AppDataService {
 
   constructor() { }
-
+/**
+ * Get the data
+ */
   getData(): Observable<any> {
  
     return of(APPDATA);
