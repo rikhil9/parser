@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
-  public title = 'parser-app';
+  public title = 'Parser App';
   public dataVisible = [];
   private subscriptions: Subscription;
 
@@ -17,18 +17,18 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(){
-     this.subscriptions = this.appService.getData().subscribe(value=>{
-      this.getObjectValue(value);
+     this.subscriptions = this.appService.getData().subscribe(nestedData=>{
+      this.getObjectValue(nestedData);
     });
    
   }
 
 
-public getObjectValue(obj: Object) {
-  let a = Object.values(obj);
+public getObjectValue(nestedObject: Object) {
+  let dataOfInterest = Object.values(nestedObject);
 
-  a.forEach((individualValue) => {
-    if( typeof individualValue === 'string' || typeof individualValue === 'number' || typeof individualValue === 'boolean'){
+  dataOfInterest.forEach((individualValue) => {
+    if( this.isNumber(individualValue)|| this.isBoolean(individualValue)||this.isString(individualValue) ){
       this.dataVisible.push(individualValue);
     } else {
       this.getObjectValue(individualValue); // Recurrsion

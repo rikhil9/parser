@@ -8,11 +8,11 @@
 
 
 
-{{dataVisible|json}}
+<div><b>Data from Server</b></div>{{dataVisible|json}}
 
-
-<ul>
-  <li *ngFor="let value of dataVisible">
+<div><b>Parsed Response</b></div>
+<ul class="unordered-list">
+  <li *ngFor="let value of dataVisible" class="list-item">
 
     <input type="number" *ngIf="isNumber(value)" value="{{value}}" >
     <input type="checkbox" *ngIf="isBoolean(value)" value="{{value}}" [checked]="value===true" >
