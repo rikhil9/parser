@@ -25,13 +25,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
 public getObjectValue(nestedObject: Object) {
-  let dataOfInterest = Object.values(nestedObject);
+  //let dataOfInterest = Object.values(nestedObject);
+  let dataOfInterest = Object.keys(nestedObject).map(key => nestedObject[key]);
 
   dataOfInterest.forEach((individualValue) => {
     if( this.isNumber(individualValue)|| this.isBoolean(individualValue)||this.isString(individualValue) ){
       this.dataVisible.push(individualValue);
     } else {
-      this.getObjectValue(individualValue); // Recurrsion
+      this.getObjectValue(individualValue); // Recursion
     }
   })
 
