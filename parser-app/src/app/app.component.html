@@ -7,16 +7,16 @@
 </div>
 
 
-
 <div><b>Data from Server</b></div>{{dataVisible|json}}
 
 <div><b>Parsed Response</b></div>
 <ul class="unordered-list">
-  <li *ngFor="let value of dataVisible" class="list-item">
+  <li *ngFor="let value of dataVisible; let index=index" class="list-item">
 
-    <input type="number" *ngIf="isNumber(value)" value="{{value}}" >
-    <input type="checkbox" *ngIf="isBoolean(value)" value="{{value}}" [checked]="value===true" >
-    <input type="text" *ngIf="isString(value)" value="{{value}}" >
+    {{dataKey[index]}} 
+    <input type="number" *ngIf="isNumber(value)" value="{{value}}" [name]=dataKey[index]>
+    <input type="checkbox" *ngIf="isBoolean(value)" [checked]="value===true" [name]=dataKey[index] >
+    <input type="text" *ngIf="isString(value)" value="{{value}}"[name]=dataKey[index] >
   </li>
 </ul>
 

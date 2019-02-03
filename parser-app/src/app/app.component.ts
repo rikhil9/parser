@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs';
 export class AppComponent implements OnInit, OnDestroy {
   public title = 'Parser App';
   public dataVisible = [];
+  public dataKey = []; // if interested
   private subscriptions: Subscription;
 
   constructor(private appService: AppDataService){
@@ -26,12 +27,17 @@ export class AppComponent implements OnInit, OnDestroy {
 
 public getObjectValue(nestedObject: Object) {
   //let dataOfInterest = Object.values(nestedObject);
-  let dataOfInterest = Object.keys(nestedObject).map(key => nestedObject[key]);
+  let dataOfInterest = Object.keys(nestedObject).map(key => {
+    
+    this.dataKey.push(key);
+    return nestedObject[key];
+  });
 
   dataOfInterest.forEach((individualValue) => {
     if( this.isNumber(individualValue)|| this.isBoolean(individualValue)||this.isString(individualValue) ){
       this.dataVisible.push(individualValue);
     } else {
+      this.dataKey.pop();
       this.getObjectValue(individualValue); // Recursion
     }
   })

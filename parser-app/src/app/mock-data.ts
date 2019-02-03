@@ -1,4 +1,6 @@
-   export const APPDATA = { a: true, b: 1,
+   export const APPDATA = { 
+    a: true, 
+    b: 1,
           c: 'Hello, World!',
             d: {
         e: 'I am a nested string!',
