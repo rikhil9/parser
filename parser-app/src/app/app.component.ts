@@ -37,6 +37,17 @@ public getObjectValue(obj: Object) {
 
 }
 
+public isNumber(value){
+  return typeof value === 'number';
+}
+
+public isBoolean(value){
+  return typeof value === 'boolean';
+}
+public isString(value){
+  return typeof value === 'string';
+}
+
 public ngOnDestroy(){
   this.subscriptions.unsubscribe();
   this.subscriptions = null;

@@ -9,3 +9,14 @@
 
 
 {{dataVisible|json}}
+
+
+<ul>
+  <li *ngFor="let value of dataVisible">
+
+    <input type="number" *ngIf="isNumber(value)" value="{{value}}" >
+    <input type="checkbox" *ngIf="isBoolean(value)" value="{{value}}" [checked]="value===true" >
+    <input type="text" *ngIf="isString(value)" value="{{value}}" >
+  </li>
+</ul>
+
